@@ -1,9 +1,11 @@
 const express = require('express');
+require('dotenv').config();
 const { resolve } = require('path');
 const sequelize = require('./lib/sequelize');
 const app = express();
 const cors = require('cors');
-const PORT = 3010;
+const PORT = process.env.PORT || 3000;
+
 
 const reservationRouter = require('./routes');
 
