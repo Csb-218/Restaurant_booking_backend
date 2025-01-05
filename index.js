@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const { resolve } = require('path');
+const path = require('path');
 const sequelize = require('./lib/sequelize');
 const app = express();
 const cors = require('cors');
@@ -11,6 +12,7 @@ const reservationRouter = require('./routes');
 
 app.use(express.json());
 app.use(cors());
+app.use('/static', express.static(path.join(__dirname, 'static')));
 
 
 app.use('/', reservationRouter);

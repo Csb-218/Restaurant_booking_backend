@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cancel Booking by ID</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <h1>Cancel Booking by ID</h1>
+    <form id="cancelBookingForm">
+      <label for="bookingId">Booking ID:</label>
+      <input type="text" id="bookingId" name="bookingId" required />
+      <button type="submit">Cancel Booking</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+      document.getElementById('cancelBookingForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const bookingId = document.getElementById('bookingId').value;
+        const response = await fetch(`/bookings/${bookingId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        console.log(response)
+        if (response.status === 204) {
+          document.getElementById('result').innerText = 'Booking cancelled successfully!';
+        } else {
+          document.getElementById('result').innerText = 'Error cancelling booking';
+        }
+      });
+    </script>
+  </body>
+</html>

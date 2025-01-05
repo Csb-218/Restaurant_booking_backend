@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Check Availability</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <h1>Check Availability</h1>
+    <form id="availabilityForm">
+      <label for="date">Select Date:</label>
+      <input type="date" id="date" name="date" required />
+      <button type="submit">Check Availability</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+      document.getElementById('availabilityForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const date = document.getElementById('date').value;
+        const response = await fetch('/bookings/available', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ date })
+        });
+        const result = await response.json();
+        document.getElementById('result').innerText = result.message;
+      });
+    </script>
+  </body>
+</html>

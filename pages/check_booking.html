@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Check Booking by ID</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <h1>Check Booking by ID</h1>
+    <form id="checkBookingForm">
+      <label for="bookingId">Booking ID:</label>
+      <input type="text" id="bookingId" name="bookingId" required />
+      <button type="submit">Check Booking</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+      document.getElementById('checkBookingForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const bookingId = document.getElementById('bookingId').value;
+        const response = await fetch(`/bookings/${bookingId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const result = await response.json();
+        if (response.ok) {
+          document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+        } else {
+          document.getElementById('result').innerText = result.message || 'Error fetching booking';
+        }
+      });
+    </script>
+  </body>
+</html>

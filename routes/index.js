@@ -1,9 +1,26 @@
 const router = require('express').Router();
-
+const { resolve } = require('path');
 const Reservation = require('../models/reservation')
 
 router.get('/', (req, res) => {
-  res.send('Welcome to the reservation system!');
+  res.sendFile(resolve(__dirname, '../pages/index.html'));
+  // res.send('Welcome to the reservation system!');
+})
+
+router.get("/view/availability", (req, res) => {
+  res.sendFile(resolve(__dirname, '../pages/availability.html'));
+})
+
+router.get("/view/book", (req, res) => {
+  res.sendFile(resolve(__dirname, '../pages/book.html'));
+})
+
+router.get("/view/book_by_id", (req, res) => {
+  res.sendFile(resolve(__dirname, '../pages/check_booking.html'));
+})
+
+router.get("/view/cancel_book_by_id", (req, res) => {
+  res.sendFile(resolve(__dirname, '../pages/cancel_book.html'));
 })
 
 router.get('/bookings', async(req, res) => {

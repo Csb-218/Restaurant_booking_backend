@@ -4,13 +4,49 @@
 
 body {
   margin: 0;
-  padding: 1rem;
-  font-family: system-ui, sans-serif;
-  color: black;
-  background-color: white;
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f4f4f9;
+  text-align: left;
 }
 
 h1 {
   font-weight: 800;
+  font-size: 2rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-weight: 600;
   font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+a {
+  text-decoration: none;
+  color: #4CAF50;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #388E3C;
+}
+
+p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
 }
